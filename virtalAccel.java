@@ -93,15 +93,26 @@ public class virtalAccel implements WindowListener {
         while (isClosed == false) {
             boolean run = b.getModel().isPressed();
             if (run) {
-                target = Double.parseDouble(tt.getText());
-                speed = Double.parseDouble(at.getText());
-                delay = Integer.parseInt(st.getText());
+                try {
+                    target = Double.parseDouble(tt.getText());
+                    speed = Double.parseDouble(at.getText());
+                    delay = Integer.parseInt(st.getText());
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(f,
+                        "Invalid input.",
+                        "error",
+                        JOptionPane.ERROR_MESSAGE);
+                }
                 ol.setText("Output:" + doMath(target, speed, delay));
                 o.updateUI();
             } else {
-                target = 0;
-                speed = 0;
-                delay = 0;
+                try {
+                    target = 0;
+                    speed = 0;
+                    delay = 0;
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(f,"Invalid input.","error",JOptionPane.ERROR_MESSAGE);
+                }
                 ol.setText("Output:" + doMath(target, speed, delay));
                 o.updateUI();
             }
